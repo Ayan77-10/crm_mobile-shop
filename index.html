@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for adjusting sidebar width */
+        #sidebar {
+            width: 10%; /* Adjust the sidebar width */
+            position: absolute;
+            top:22%; /* Vertically center the sidebar */
+            transform: translateY(-50%);
+            z-index: 1;
+            padding: 20px;
+            height:150px; 
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: whitesmoke;
+        }
+        .sidebar a i {
+            margin-right: 10px;
+        }
+        .sidebar a:hover {
+            background-color: rgb(101, 152, 234); /* Change background color on hover */
+            scale: 1.1;
+            border-radius: 5px;
+            transition: smooth;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    <nav id="sidebar" class="montserrat-regular sidebar">
+        <ul class="list-unstyled">
+            <li>
+                <a href=".">
+                    <i class="bi bi-speedometer2"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="/chart.html">
+                    <i class="bi bi-basket2-fill"></i>
+                    Analytics
+                </a>
+            </li>
+            
+        </ul>
+    </nav>  
+  
+     
+
+    <div class="main montserrat-regular">
+        <div class="head">
+            <img src="assets/plus.svg" class="add" onclick="openPopup()" alt="Add new data">
+            <input id="search" type="search" value="" autocomplete="off" placeholder="Search me...">
+        </div>
+        <div class="content">
+            
+
+           
+            
+           
+        
+        </div>      
+    </div>
+    <div class="productPage montserrat-regular ">
+        <h3>Add a Product</h3>
+        <img src="assets/211651_close_round_icon.png" class= "close" alt = "Close me ">
+        <form action="submit" id="productform">
+            <div class="customer common">
+                <label for="forCustomersName">Customer's Name</label>
+                <input type="text" id="custName" placeholder="Enter Name" autocomplete="off" required>
+            </div>
+            <div class="product common">
+                <label for="forCustomersProduct">Product Name</label>
+                <input type="text" id="prodName" placeholder="Enter Product Name" required autocomplete="off">
+            </div>
+            <div class="phone common">
+                <label for="forCustomersPhone">Mobile Number</label>
+                <input type="tel" id="phone" placeholder="Enter Phone number" required autocomplete="off" >
+            </div>
+            <div class="issue common">
+                <label for="forCustomersIssue">Issue</label>
+                <input type="text" id="custIssue" placeholder="Issue " required autocomplete="off">
+            
+            
+            </div>
+            <button class="submit" type="submit">Submit</button>
+             
+        </form>
+        
+    </div>
+    <div class="viewData montserrat-regular" >
+        <h3>Customer Details</h3>
+        <div class="customerData style_customer">
+            <p>Customer's Name :</p>
+            <p class="styleme" id="customerInput"></p>
+        </div>
+        <div class="contactData style_customer">
+            <p>Contact :</p>
+            <p class="styleme" id="contactInput"></p>
+        </div>
+        <div class="deviceData style_customer">
+            <p>Device Name :</p>
+            <p class="styleme" id="deviceInput"></p>
+        </div>
+        <div class="issueData style_customer">
+            <p>Issue :</p>
+            <p class="styleme" id="issueInput"></p>
+        </div>
+        <a class="inline-flex items-center px-4 py-2 mt-2 font-semibold tracking-tighter text-white transition duration-500 ease-in-out transform border rounded-lg text-md md:mt-0 hover:text-black hover:bg-white focus:shadow-outline bg-transparent btn" href="/">
+            <div class="flex text-lg tracking-tighter">
+                <span class="justify-center">close</span>
+            </div>
+        </a>
+        
+
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="index.js"></script>
+    <script>
+        // Function to load all items from Firebase
+function loadAllItems() {
+    const contentDiv = document.querySelector('.content');
+    contentDiv.innerHTML = ''; // Clear previous content
+    
+    productForm.once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            const item = childSnapshot.val();
+            
+            const newDiv = document.createElement("div");
+            newDiv.classList.add('c1');
+            newDiv.innerHTML = `
+                <p class="sno">${item.date}</p>
+                <p class="name" id="name">${item.customerName}</p>
+                <img src="assets/eye.png" class="view" alt="View data">
+                <img src="assets/trash.png" class="delete" onclick="deleteData(this)" alt="Delete Data">
+            `;
+            contentDiv.appendChild(newDiv);
+        });
+    });
+}
+
+// Function to filter items based on searchTerm
+function filterContent(searchTerm) {
+    const contentDiv = document.querySelector('.content');
+    contentDiv.innerHTML = ''; // Clear previous content
+    
+    productForm.once('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            const item = childSnapshot.val();
+            const name = item.customerName.toLowerCase();
+            
+            if (name.includes(searchTerm.toLowerCase())) {
+                const newDiv = document.createElement("div");
+                newDiv.classList.add('c1');
+                newDiv.innerHTML = `
+                    <p class="sno">${item.date}</p>
+                    <p class="name" id="name">${item.customerName}</p>
+                    <img src="assets/eye.png" class="view" alt="View data">
+                    <img src="assets/trash.png" class="delete" onclick="deleteData(this)" alt="Delete Data">
+                `;
+                contentDiv.appendChild(newDiv);
+            }
+        });
+    });
+}
+
+// Event listener for search input
+document.getElementById('search').addEventListener('input', function(event) {
+    const searchTerm = event.target.value.trim();
+    
+    if (!searchTerm) {
+        loadAllItems(); // Load all items when searchTerm is empty
+        location.reload()
+    } else {
+        filterContent(searchTerm); // Filter items based on searchTerm
+    }
+});
+
+
+// console.log(localStorage.getItem(isLoggedIn))
+// document.addEventListener('DOMContentLoaded', function() {
+//             // Check if user is not logged in and on index.html
+//             if (!localStorage.getItem('isLoggedIn') && window.location.pathname.endsWith('index.html')) {
+//                 // Check if already on login page to avoid redirect loop
+//                 if (window.location.pathname.endsWith('login.html')) {
+//                     return;
+//                 }
+                
+//                 window.location.href = '/login.html';
+//             }
+
+//             // Example: Accessing isLoggedIn from localStorage
+//             if (localStorage.getItem('isLoggedIn') === 'true') {
+//                 console.log('User is logged in');
+//             } else {
+//                 // window.location.href ='/login.html'
+//                 console.log('User is not logged in');
+//             }
+//         });
+// localStorage.setItem('isLoggedIn', 'false');
+// const d = localStorage.getItem('isLoggedIn')
+// console.log(d )
+// if (d === 'false'){
+//     console.log("user ajnabi hai ")
+//     window.location.href = '/login.html'
+// }
+document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is not logged in and redirect to login.html
+            if (!localStorage.getItem('isLoggedIn')) {
+                // Check if user is not logged in and redirect to login.html
+            if (!localStorage.getItem('isLoggedIn') && window.location.pathname !== '/login.html') {
+    window.location.href = '/login.html';
+}
+
+                window.location.href = '/login.html';
+            }
+        });
+
+        
+     
+    </script>
+</body>
+</html>

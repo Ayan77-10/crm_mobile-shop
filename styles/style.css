@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    background: url(https://static.vecteezy.com/system/resources/previews/007/064/600/original/blue-technology-future-big-data-server-glow-triangular-abstract-technology-digital-big-data-social-blue-triangles-poster-geometric-wallpaper-technology-texture-free-vector.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #EEEEEE;
+}
+.main{
+    width: 70vw;
+    height: 67vh;
+    display: grid;
+    grid-template-rows: 1fr 8fr;
+    gap: 2rem;
+    position: relative;
+    top: 15%;
+    left: 15%;
+    /* background-color: #76ABAE; */
+    background-color: whitesmoke;
+    border-radius: 20px;
+    font-family: 'Montserrat' ,serif;
+    font-weight: 500;
+    color: black;
+    opacity: 0.7;
+    overflow: auto;
+
+}
+.fade{
+    opacity: 0.2;
+}
+.nofade{
+    opacity: 1;
+    scale: 1;
+}
+.head{
+    width: 85%;
+    justify-self: center;
+    height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1.5rem;
+    align-items: center;
+
+}
+.add{
+    width: 2%;
+    height: 2%;
+}
+.add:hover{
+    cursor: pointer;
+    scale: 1.1;
+    transition: smooth;
+}
+#search{
+    padding: 10px;
+    font-size: 1.2rem;
+    width: 60%;
+    height: fit-content;
+    border-radius: 10px;
+    outline: none;
+}
+.content{
+    justify-self: center;
+    width: 85%;
+    
+}
+.c1{
+    display: flex;
+    height: auto;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 1;
+    gap: 2rem;
+    margin-bottom: 1rem;
+   
+}
+.view, .delete{
+    width: 2%;
+    height: 2%;
+    object-fit: contain;
+    cursor: pointer;
+    
+}
+.view:hover , .delete:hover{
+    cursor: pointer;
+    scale: 1.1;
+    transition: smooth;
+}
+.sno{
+    width: 15%;
+    height: fit-content;
+    font-size: 1rem;
+}
+.name{
+    width: 45%;
+    font-size: 1rem;
+
+}
+/* PRODUCT PAGE DESIGNING */
+.productPage {
+    width: 30vw;
+    height: 64vh;
+    display: grid;
+    background-color: white;
+    border-radius: 20px;
+    display: none; 
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    color: black;
+    font-weight: 100;
+    font-family: 'Montserrat' , serif;
+    font-weight: 500;
+    place-content: center;
+     
+
+}
+hr{
+    opacity: 1;
+    background-color: yellow;
+}
+.productPage h3{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+#productform{
+    display: grid;
+    gap: 1rem;
+    height: fit-content;
+}
+.common{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+    font-size: 1.2rem;
+    gap: 10px;
+    /* font-weight: bold; */
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.common input{
+    height: 15%;
+    padding: 15px;
+    width: 80%;
+    border-radius: 5px;
+    font-family: 'Montserrat' , serif;
+    /* border: none; */
+    outline: none;
+    border: 0.2px solid;
+
+}
+.submit{
+    width: 35%;
+    height:  fit-content;
+    padding: 5px;
+    background-color: white;
+    font-family: monospace;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    margin: auto;
+    background-color:#19948a ;
+    color: whitesmoke;
+    margin-bottom: 10px;
+
+    
+}
+.submit:hover{
+    cursor: pointer;
+    scale: 1.1;
+    transition: smooth;
+}
+/* Custom CSS */
+
+#prodName{
+    height: 20%;
+}
+.close{
+
+    position: relative;
+    bottom: 8%;
+    height: 20px;
+    width: 20px;
+    left: 95%;
+}
+.close:hover{
+    cursor: pointer;
+}
+.viewData {
+        width: 25vw;
+        height: 35vh;
+        background-color: white;
+        border-radius: 20px;
+        display: none; 
+        position: absolute;
+        top: 25%;
+        left: 35%;
+        color: black;
+        font-family: 'Montserrat' , serif;
+        font-weight: 500;
+}
+.style_customer{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+    align-items: center;
+}
+.style_customer p{
+    width: 35%;
+
+}
+.styleme{
+    width: 25%;
+    flex: 0.6;
+    
+
+}
+.viewData h3{
+    text-align: center;
+}
+.btn{
+    position: relative;
+    bottom: 2%;
+    left: 35%;
+    color: black;
+    z-index: 100;
+}
+.btn:hover{
+    background-color: black;
+    color: black;
+}
+
+.btn span{
+    color: black;
+}
+
+/* Media Queries */
+
+
+/* Hide the entire website for mobile and tablet users */
+@media only screen and (max-width: 910px) {
+    body {
+        display: none;
+    }
+}
+
+/* Display a message instead of the website for mobile and tablet users */
+@media only screen and (max-width: 910px) {
+    body {
+        display: none;
+    }
+    .mobile-message {
+        display: block;
+    }
+}
+@media (min-width: 911px )  and (max-width : 1200px) {
+    .view, .delete{
+        width: 3.5%;
+        height: 3.5%;
+    }
+    .sidebar{
+        width: 8%;
+    }
+}
