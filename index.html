@@ -137,7 +137,7 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <script src="index.js"></script>
+    <script type="moduele" src="index.js"></script>
     <script>
         // Function to load all items from Firebase
 function loadAllItems() {
@@ -197,35 +197,8 @@ document.getElementById('search').addEventListener('input', function(event) {
         filterContent(searchTerm); // Filter items based on searchTerm
     }
 });
+           
 
-
-// console.log(localStorage.getItem(isLoggedIn))
-// document.addEventListener('DOMContentLoaded', function() {
-//             // Check if user is not logged in and on index.html
-//             if (!localStorage.getItem('isLoggedIn') && window.location.pathname.endsWith('index.html')) {
-//                 // Check if already on login page to avoid redirect loop
-//                 if (window.location.pathname.endsWith('login.html')) {
-//                     return;
-//                 }
-                
-//                 window.location.href = '/login.html';
-//             }
-
-//             // Example: Accessing isLoggedIn from localStorage
-//             if (localStorage.getItem('isLoggedIn') === 'true') {
-//                 console.log('User is logged in');
-//             } else {
-//                 // window.location.href ='/login.html'
-//                 console.log('User is not logged in');
-//             }
-//         });
-// localStorage.setItem('isLoggedIn', 'false');
-// const d = localStorage.getItem('isLoggedIn')
-// console.log(d )
-// if (d === 'false'){
-//     console.log("user ajnabi hai ")
-//     window.location.href = '/login.html'
-// }
 document.addEventListener('DOMContentLoaded', function() {
             // Check if user is not logged in and redirect to login.html
             if (!localStorage.getItem('isLoggedIn')) {
